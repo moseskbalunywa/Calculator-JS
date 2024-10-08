@@ -43,6 +43,31 @@
 
     console.log(berekenMacht(3,2))
 
+    function handleSubmit() {
+    
+    const input1 = document.getElementById('input1').value;
+    const input2 = document.getElementById('input2').value;
+   
+    document.getElementById('result').innerText = `Input 1: ${input1}, Input 2: ${input2}`;
+}
+
   </script>
+  <p id="result"></p>
+  <form id="myForm">
+    
+    <input type="text" id="input1" name="input1"><br><br>
+    
+    <input type="text" id="input2" name="input2"><br><br>
+    
+    <button type="button" onclick="handleSubmit()">Submit</button>
+    <button onclick="telOP(getal1, getal2)">+</button>
+    <button onclick="trekAf(getal1, getal2)">-</button>
+    <button onclick="vermenigvuldig(getal1, getal2)">*</button>
+    <button onclick="deel(getal1, getal2)">/</button>
+    <button onclick="berekenRest(getal1, getal2)">%</button>
+    <button onclick="berekenMacht(getal1, getal2)">**</button>
+    
+</form>
+
 </body>
 </html>
