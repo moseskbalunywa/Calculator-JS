@@ -60,7 +60,7 @@ You can easily run this calculator by downloading the files and opening the `ind
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/moseskbalunywa/calculator-project.git
+   git clone https://github.com/moseskbalunywa/Calculator-JS.git
    ```
 2. **Open the HTML file**:
    - Navigate to the folder where the files are stored.
