@@ -7,67 +7,210 @@
 </head>
 <body>
   <script>
+    // Initialize global variables to store the operator and input values
+    let operator = '';
+    let input1 = '';
+    let input2 = '';
+
+    // Function to perform addition
     function telOp(getal1, getal2) {
-      return getal1+getal2;
+      return getal1 + getal2;
     }
 
-    console.log(telOp(1,3))
-
+    // Function to perform subtraction
     function trekAf(getal1, getal2) {
-      return getal1-getal2;
+      return getal1 - getal2;
     }
 
-    console.log(trekAf(5,4))
-
+    // Function to perform multiplication
     function vermenigvuldig(getal1, getal2) {
-      return getal1*getal2;
+      return getal1 * getal2;
     }
 
-    console.log(vermenigvuldig(7,8))
-
+    // Function to perform division
     function deel(getal1, getal2) {
-      return getal1/getal2;
+      return getal1 / getal2;
     }
 
-    console.log(deel(10,2))
-
+    // Function to calculate the remainder (modulus)
     function berekenRest(getal1, getal2) {
-      return getal1%getal2;
+      return getal1 % getal2;
     }
 
-    console.log(berekenRest(8,5))
-
+    // Function to calculate power (exponentiation)
     function berekenMacht(getal1, getal2) {
-      return getal1**getal2;
+      return getal1 ** getal2;
     }
 
-    console.log(berekenMacht(3,2))
+    // Function to set the operator based on button clicked
+    function setOperator(op) {
+      operator = op;  // Store the operator for later calculation
+    }
 
-    function handleSubmit() {
-    
-    const input1 = document.getElementById('input1').value;
-    const input2 = document.getElementById('input2').value;
-   
-    document.getElementById('result').innerText = `Input 1: ${input1}, Input 2: ${input2}`;
-}
+    // Function to calculate the result based on the selected operator and input values
+    function calculate() {
+      // Convert input values from string to float for calculations
+      const getal1 = parseFloat(document.getElementById('input1').value);
+      const getal2 = parseFloat(document.getElementById('input2').value);
+      let result = '';
 
+      // Perform the operation based on the selected operator
+      switch (operator) {
+        case '+':
+          result = telOp(getal1, getal2);
+          break;
+        case '-':
+          result = trekAf(getal1, getal2);
+          break;
+        case '*':
+          result = vermenigvuldig(getal1, getal2);
+          break;
+        case '/':
+          result = deel(getal1, getal2);
+          break;
+        case '%':
+          result = berekenRest(getal1, getal2);
+          break;
+        case '**':
+          result = berekenMacht(getal1, getal2);
+          break;
+        default:
+          result = 'Invalid operation';  // Handle invalid operator case
+      }
+
+      // Display the calculated result
+      document.getElementById('result').innerText = `Result: ${result}`;
+    }
+
+    // Function to clear the input fields and reset the operator and result
+    function clearInput() {
+      document.getElementById('input1').value = '';
+      document.getElementById('input2').value = '';
+      document.getElementById('result').innerText = '';
+      operator = '';  // Reset operator for a fresh calculation
+    }
+
+    // Function to add a decimal point to the selected input field (input1 or input2)
+    function addDecimal(inputField) {
+      const input = document.getElementById(inputField);
+      // Only add a decimal point if it is not already present in the input
+      if (!input.value.includes('.')) {
+        input.value += '.';
+      }
+    }
   </script>
-  <p id="result"></p>
-  <form id="myForm">
-    
-    <input type="text" id="input1" name="input1"><br><br>
-    
-    <input type="text" id="input2" name="input2"><br><br>
-    
-    <button type="button" onclick="handleSubmit()">Submit</button>
-    <button onclick="telOP(getal1, getal2)">+</button>
-    <button onclick="trekAf(getal1, getal2)">-</button>
-    <button onclick="vermenigvuldig(getal1, getal2)">*</button>
-    <button onclick="deel(getal1, getal2)">/</button>
-    <button onclick="berekenRest(getal1, getal2)">%</button>
-    <button onclick="berekenMacht(getal1, getal2)">**</button>
-    
-</form>
 
+  <style>
+    /* Global reset for consistent sizing and margins */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+    
+    /* Calculator container styling */
+    .calculator {
+      background-color: #f2f2f2;
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+      border: solid 1px #ccc;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      margin-top: 40px;
+    }
+
+    /* Styling for input fields to ensure readability and proper spacing */
+    input {
+      width: 100%; /* Full width to match container */
+      padding: 10px;
+      font-size: 24px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: solid 1px #ccc;
+    }
+
+    /* Styling for the result display area */
+    #result {
+      width: 100%;
+      padding: 10px;
+      font-size: 24px;
+      border: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3) inset;
+      border-radius: 5px;
+      min-height: 46px; /* Ensure consistent height even when result is empty */
+      margin-bottom: 20px;
+    }
+
+    /* Layout for the calculator buttons */
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 buttons per row */
+      grid-gap: 10px; /* Spacing between buttons */
+      margin-top: 20px;
+    }
+
+    /* General styling for all buttons */
+    button {
+      padding: 10px;
+      font-size: 24px;
+      border: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Change background color on hover for better UX */
+    button:hover {
+      background-color: #ddd;
+    }
+
+    /* Styling for operator buttons */
+    .operator {
+      background-color: #ff851b;
+      color: #fff;
+    }
+
+    /* Styling for equals button */
+    .equals {
+      background-color: #01ff70;
+      color: #fff;
+    }
+
+    /* Styling for clear button */
+    .clear {
+      background-color: #ff4136;
+      color: #fff;
+    }
+
+    /* Styling for decimal button */
+    .decimal {
+      background-color: #ff851b;
+      color: #fff;
+    }
+  </style>
+
+  <!-- HTML structure for the calculator UI -->
+  <div class="calculator">
+    <!-- Area to display the result of the calculation -->
+    <p id="result"></p>
+    
+    <!-- Input fields for the two numbers to be calculated -->
+    <input type="text" id="input1" name="input1"><br><br>
+    <input type="text" id="input2" name="input2"><br><br>
+
+    <!-- Button layout with operator buttons, clear, decimal, and equals -->
+    <div class="buttons">
+      <button class="clear" onclick="clearInput()">C</button>
+      <button class="decimal" onclick="addDecimal('input1')">.</button>
+      <button class="operator" onclick="setOperator('+')">+</button>
+      <button class="operator" onclick="setOperator('-')">-</button>
+      <button class="operator" onclick="setOperator('*')">*</button>
+      <button class="operator" onclick="setOperator('/')">/</button>
+      <button class="operator" onclick="setOperator('%')">%</button>
+      <button class="operator" onclick="setOperator('**')">^</button>
+      <button class="equals" onclick="calculate()">=</button>
+    </div>
+  </div>
 </body>
 </html>
